@@ -38,7 +38,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'order': {'required': False}  # ✅ Let DRF know it's handled manually
         }
-
+        
 
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True)

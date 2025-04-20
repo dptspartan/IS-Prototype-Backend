@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from .models import *
 from .serializers import *
 from rest_framework.decorators import action
@@ -29,6 +29,19 @@ class InventoryTransactionViewSet(viewsets.ModelViewSet):
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+
+    @action(detail=True, methods=['patch'])
+    def dispatch(self, request, pk=None):
+        # Retrieve the order by primary key
+        order = self.get_object()
+
+        # Update the order status
+        order.status = Order.DISPATCHED  # Set status to DISPATCHED
+        order.save()  # Save the updated order
+
+        # Serialize and return the updated order
+        serializer = self.get_serializer(order)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 
