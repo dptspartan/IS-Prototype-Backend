@@ -73,3 +73,7 @@ junit-*.xml
 # Local development
 *.swp
 *.swo
+
+*/media
+/media/*
+/media
