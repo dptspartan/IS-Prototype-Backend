@@ -10,9 +10,7 @@ router.register(r'transactions', InventoryTransactionViewSet)
 router.register(r'orders', OrderViewSet)
 
 urlpatterns = [
-    # Make sure this comes before the default router URLs to avoid overriding
-    path('orders/<int:pk>/dispatch/', OrderViewSet.as_view({'patch': 'dispatch'}), name='order-dispatch'),
-    
+
     # Include router's URLs after
     path('', include(router.urls)),
 
