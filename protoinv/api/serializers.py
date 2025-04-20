@@ -30,6 +30,9 @@ class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem
         fields = '__all__'
+        extra_kwargs = {
+            'order': {'required': False}  # ✅ Let DRF know it's handled manually
+        }
 
 
 class OrderSerializer(serializers.ModelSerializer):
